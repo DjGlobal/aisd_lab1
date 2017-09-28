@@ -75,6 +75,20 @@ struct List {
 		}
 		
 	}
+	void reverse() {
+		head = reverse_(head);
+	}
+	int reverse_(int el){
+		if (el == -1) return -1;
+		if (a[el].next == -1) return el;
+
+		int t = reverse_(a[el].next);
+		a[a[el].next].next = el;
+
+		a[el].next = -1;
+		return t;
+	}
+
 };
 
 char lookNext();
@@ -89,10 +103,22 @@ int main()
 		l.add(t);
 	} while (std::cin && (lookNext() != '\n'));
 	l.print();
+	std::cout << "\n\nREVERSING:\n";
+	l.reverse();
+	l.print();
+	std::cout << "\n\nREVERSING:\n";
+	l.reverse();
+	l.print();
 	std::cout << "\n\nENTER SOMETNING TO BE ADDED TO THE BEGINNING\n";
 	std::string t;
 	std::cin >> t;
 	l.add_to_beginning(t);
+	l.print();
+	std::cout << "\n\nREVERSING:\n";
+	l.reverse();
+	l.print();
+	std::cout << "\n\nREVERSING:\n";
+	l.reverse();
 	l.print();
 	std::cout << "\n\n";
 	system("pause");
