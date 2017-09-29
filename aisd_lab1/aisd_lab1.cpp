@@ -67,13 +67,26 @@ struct List {
 		if (head == -1)
 			std::cout << "\n";
 		else {
-			size_t t = head;
+			int t = head;
 			while (t != -1) {
 				std::cout << a[t].data << " ";
 				t = a[t].next;
 			}
 		}
 		
+	}
+	void reverse2() {
+		//head = reverse_(head);
+		int curr = head;
+		int next, link = -1;
+		while (a[curr].next != -1) {
+			next = a[curr].next;
+			a[curr].next = link;
+			link = curr;
+			curr = next;
+		}
+		a[curr].next = link;
+		head = curr;
 	}
 	void reverse() {
 		head = reverse_(head);
@@ -104,10 +117,10 @@ int main()
 	} while (std::cin && (lookNext() != '\n'));
 	l.print();
 	std::cout << "\n\nREVERSING:\n";
-	l.reverse();
+	l.reverse2();
 	l.print();
 	std::cout << "\n\nREVERSING:\n";
-	l.reverse();
+	l.reverse2();
 	l.print();
 	std::cout << "\n\nENTER SOMETNING TO BE ADDED TO THE BEGINNING\n";
 	std::string t;
@@ -115,10 +128,10 @@ int main()
 	l.add_to_beginning(t);
 	l.print();
 	std::cout << "\n\nREVERSING:\n";
-	l.reverse();
+	l.reverse2();
 	l.print();
 	std::cout << "\n\nREVERSING:\n";
-	l.reverse();
+	l.reverse2();
 	l.print();
 	std::cout << "\n\n";
 	system("pause");
